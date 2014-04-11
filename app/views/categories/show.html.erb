@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
+<h2>Category Details</h2>
+<div class="row">
+	<div class="col-md-6">
+		<p>
+		  <strong>Label:</strong>
+		  <%= @category.label %>
+		</p>
+	</div>
+	<div class="col-md-6">
+		<p>
+			Tasks will be here!!!
+		</p>
+	</div>
+</div>
 
-<p>
-  <strong>Label:</strong>
-  <%= @category.label %>
-</p>
+<hr class="hr-divider">
 
-<p>
-  <strong>Sync:</strong>
-  <%= @category.sync %>
-</p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
