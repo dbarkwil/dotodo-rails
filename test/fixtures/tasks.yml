@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  due_date: 2014-04-11 07:06:49
+  completion_date: 2014-04-11 07:06:49
+  label: MyString
+  sync: false
+
+two:
+  due_date: 2014-04-11 07:06:49
+  completion_date: 2014-04-11 07:06:49
+  label: MyString
+  sync: false
