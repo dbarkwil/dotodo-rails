@@ -6,10 +6,21 @@
 		  <strong>Label:</strong>
 		  <%= @category.label %>
 		</p>
+		<p>
+			<strong>Number of Tasks:</strong>
+			<%= @category.tasks.count %>
+		</p>
 	</div>
 	<div class="col-md-6">
 		<p>
-			Tasks will be here!!!
+			<strong>Current Tasks:</strong>
+		</p>
+		<p>
+			<ul>
+			<% @category.tasks.each do |task| %>
+				<li><strong><%= task.label %> - Due:</strong> <%= task.due_date %></li>
+			<% end %>
+			</ul>
 		</p>
 	</div>
 </div>
