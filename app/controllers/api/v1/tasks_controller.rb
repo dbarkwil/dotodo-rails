@@ -12,9 +12,9 @@ module Api
         		# # get a list of all incomplete_items
         		# incomplete_items = Item.where(completed_at: nil)
         		if task_params[:catid] == nil
-        			tasks = Task.all
+        			tasks = Task.all.order("id ASC")
         		else
-        			tasks = Task.all.where(category: task_params[:catid])
+        			tasks = Task.all.where(category: task_params[:catid]).order("id ASC")
         		end
         		# #respond with all incomplete items that are NOT in duplicate_items array
         		respond_with tasks.all.where.not(id: duplicate_tasks)

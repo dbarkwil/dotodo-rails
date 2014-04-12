@@ -17,6 +17,12 @@
 	  <strong>Due date:</strong>
 	  <%= @task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
 	</p>
+	<% if @task.completion_date %>
+		<p>
+		  <strong>Completion Date:</strong>
+		  <%= @task.completion_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
+		</p>
+	<% end %>
 
 	</div>
 </div>

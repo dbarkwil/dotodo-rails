@@ -7,7 +7,7 @@ module Api
         
         		duplicate_categories = category_params[:ids]
         
-        		respond_with Category.all.where.not(id: duplicate_categories)
+        		respond_with Category.all.where.not(id: duplicate_categories).order("id ASC")
         
       		end
 
