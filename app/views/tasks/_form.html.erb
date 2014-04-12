@@ -10,20 +10,37 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :due_date %>
+      <div class="input-group date" id="datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss">
+        <%= f.text_field :due_date, class:"form-control" %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :due_date %><br>
-    <%= f.datetime_select :due_date %>
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker();
+</script>
+    <div class="form-group">
+      <%= f.label :label %><br>
+      <%= f.text_field :label, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :category %><br>
+      <%= f.collection_select :category_id, Category.all.collect, :id, :label, {:include_blank => "Please Select"}, {:class => "form-control"} %>
+    </div>
+    <div class="actions">
+      <%= f.submit class:"btn btn-primary" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
-  </div>
-  <div class="field">
-    <%= f.label :category %><br>
-    <%= f.collection_select :category_id, Category.all.collect, :id, :label, {:include_blank => "Please Select"}, {:class => "form-control"} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker').datetimepicker();
+  });
+</script>
 <% end %>

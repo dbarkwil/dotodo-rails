@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
+<h2>Task Details:</h2>
+<hr class="hr-divide">
+<div class="row">
+	<div class="col-md-6">
+	<p>
+	  <strong>Due date:</strong>
+	  <%= @task.due_date %>
+	</p>
 
-<p>
-  <strong>Due date:</strong>
-  <%= @task.due_date %>
-</p>
+	<p>
+	  <strong>Label:</strong>
+	  <%= @task.label %>
+	</p>
 
-<p>
-  <strong>Completion date:</strong>
-  <%= @task.completion_date %>
-</p>
+	</div>
+</div>
 
-<p>
-  <strong>Label:</strong>
-  <%= @task.label %>
-</p>
-
-<p>
-  <strong>Sync:</strong>
-  <%= @task.sync %>
-</p>
+<hr class="hr-divide">
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
