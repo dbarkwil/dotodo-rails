@@ -5,6 +5,15 @@ Rails.application.routes.draw do
 
   root 'categories#index'
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :tasks
+        get 'tasks/:id/complete', :to => 'tasks#complete', :as => :api_complete
+      resources :categories
+    end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
