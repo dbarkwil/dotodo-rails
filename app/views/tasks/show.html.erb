@@ -3,14 +3,19 @@
 <hr class="hr-divide">
 <div class="row">
 	<div class="col-md-6">
-	<p>
-	  <strong>Due date:</strong>
-	  <%= @task.due_date %>
-	</p>
+	
 
 	<p>
 	  <strong>Label:</strong>
 	  <%= @task.label %>
+	</p>
+
+	<p>
+		<strong>Category:</strong>
+		<%= @task.category.label %>
+	<p>
+	  <strong>Due date:</strong>
+	  <%= @task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
 	</p>
 
 	</div>

@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    task_params[:due_date] = DateTime.strptime(task_params[:due_date].to_s, '%Y-%m-%d %I:%M:%S %p')
     @task = Task.new(task_params)
 
     respond_to do |format|
