@@ -16,12 +16,19 @@
 	  <strong>Due date:</strong>
 	  <%= @task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
 	</p>
-	<% if @task.completion_date %>
-		<p>
-		  <strong>Completion Date:</strong>
-		  <%= @task.completion_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
-		</p>
-	<% end %>
+	
+	<p>
+	  <strong>Completion Date:</strong>
+	  <% if @task.completion_date %>
+	  	<%= @task.completion_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
+	  <% end %>
+	</p>
+	
+
+	<p>
+		<strong>Sync Value:</strong>
+		<%= @task.sync %>
+	</p>
 
 	</div>
 </div>

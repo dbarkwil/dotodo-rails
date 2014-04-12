@@ -9,18 +9,28 @@
 			<strong>Number of Tasks:</strong>
 			<%= @category.tasks.count %>
 		</p>
+		<p>
+			<strong>Sync Value:</strong>
+			<%= @category.sync.to_s %>
+		</p>
 	</div>
 	<div class="col-md-6">
-		<p>
-			<strong>Current Tasks:</strong>
-		</p>
-		<p>
-			<ul>
-			<% @category.tasks.each do |task| %>
-				<li><strong><%= task.label %> - Due:</strong> <%= task.due_date %></li>
-			<% end %>
-			</ul>
-		</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Task</th>
+					<th>Due Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @category.tasks.each do |task| %>
+					<tr>
+						<td><%= task.label %></td>
+						<td><%= task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
 
