@@ -51,4 +51,5 @@ gem 'rails_12factor', group: :production
 # Authlogic
 gem 'authlogic'
 gem 'scrypt'
+gem 'bcrypt'
 

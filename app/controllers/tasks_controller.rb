@@ -4,7 +4,17 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.order("id ASC")
+    if current_user
+      @tasks ||= []
+      @categories = current_user.categories.all
+      @categories.each do |category|
+        category.tasks.each do |task|
+          @tasks<< task
+        end
+      end
+    else
+      @tasks = Task.none
+    end
   end
 
   # GET /tasks/1

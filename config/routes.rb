@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_sessions
+
   resources :users
 
   resources :tasks
@@ -14,6 +16,10 @@ Rails.application.routes.draw do
       resources :categories
     end
   end
+
+  get 'login' => 'user_sessions#new'
+  get 'logout' => 'user_sessions#destroy'
+  get 'register' => 'users#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

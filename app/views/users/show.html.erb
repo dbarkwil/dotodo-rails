@@ -1,5 +1,5 @@
-<p id="notice"><%= notice %></p>
-
+<h2><%= @user.first_name %>'s Profile</h2>
+<hr class="hr-divide">
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>
@@ -21,9 +21,8 @@
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <strong>API Key:</strong>
+  <%= @user.single_access_token %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<hr class="hr-divide">
+<%= link_to 'Edit', edit_user_path(@user) %>

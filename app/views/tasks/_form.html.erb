@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
       <%= f.label :category %><br>
-      <%= f.collection_select :category_id, Category.all.collect, :id, :label, {:include_blank => "Please Select"}, {:class => "form-control"} %>
+      <%= f.collection_select :category_id, current_user.categories.all.collect, :id, :label, {:include_blank => "Please Select"}, {:class => "form-control"} %>
     </div>
     <div class="actions">
       <%= f.submit class:"btn btn-primary" %>
