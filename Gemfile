@@ -48,3 +48,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 # Deploy to Heroku
 gem 'rails_12factor', group: :production
 
+# Authlogic
+gem 'authlogic'
+gem 'scrypt'
+
