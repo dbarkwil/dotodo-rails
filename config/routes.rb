@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  root 'categories#index'
+  root 'statics#home'
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new'
   get 'logout' => 'user_sessions#destroy'
   get 'register' => 'users#new'
+  get 'home' => 'statics#home'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
