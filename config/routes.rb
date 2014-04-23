@@ -11,9 +11,17 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :tasks
-        get 'tasks/:id/complete', :to => 'tasks#complete', :as => :api_complete
-      resources :categories
+      #Task routes
+      get ':token/tasks/:id/complete', :to => 'tasks#complete', :as => :api_complete
+      get ':token/tasks', :to => 'tasks#index'
+      get ':token/tasks/show/:id', :to => 'tasks#show'
+      get ':token/tasks/category/:catid', :to => 'tasks#category_filter'
+
+      #Category Routes
+      get ':token/categories', :to => 'categories#index'
+
+      get 'users/login', :to => 'users#login'
+   
     end
   end
 
