@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get ':token/categories', :to => 'categories#index'
 
       get 'users/login', :to => 'users#login'
+      get 'users/validate_token/:token', :to=> 'users#validate_token'
    
     end
   end

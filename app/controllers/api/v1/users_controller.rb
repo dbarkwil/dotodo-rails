@@ -7,20 +7,33 @@ module Api
 
 			def login
 				@user = current_user
-				respond_with @user.single_access_token
+				respond_with [{:token => @user.single_access_token}].to_json
+			end
+
+			def validate_token
+				@user = User.find_by_single_access_token(params[:token])
+		    	if @user
+		    		respond_with [{:status => "valid"}].to_json
+		    	else
+		    		respond_with [{:status => "invalid"}].to_json
+		    	end
 			end
 
 			private
 
-			def require_http_auth_user
-				authenticate_or_request_with_http_basic do |username, password|
-					if user = User.find_by_username(username)
-						user.valid_password?(password)
-					else
-						false
+				def require_http_auth_user
+					authenticate_or_request_with_http_basic do |username, password|
+						if user = User.find_by_username(username)
+							user.valid_password?(password)
+						else
+							false
+						end
 					end
 				end
-			end
+
+				def user_params
+		    		params.permit(:token)
+		    	end
 
 		end
 	end
