@@ -13,7 +13,7 @@ module Api
 			def validate_token
 				@user = User.find_by_single_access_token(params[:token])
 		    	if @user
-		    		respond_with [{:status => "valid"}].to_json
+		    		respond_with @user.to_json(:only => :id)
 		    	else
 		    		respond_with [{:status => "invalid"}].to_json
 		    	end
