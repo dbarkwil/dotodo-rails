@@ -15,7 +15,8 @@ module Api
 		    	if @user
 		    		respond_with @user.to_json(:only => :id)
 		    	else
-		    		respond_with [{:status => "invalid"}].to_json
+		    		null_response = {'id' => 0}
+		    		respond_with null_response.to_json
 		    	end
 			end
 
