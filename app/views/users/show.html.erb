@@ -24,5 +24,7 @@
   <strong>API Key:</strong>
   <%= @user.single_access_token %>
 </p>
+<p>
+<%= link_to "Log out all remote devices", logout_remote_path, class:'btn btn-primary' %>
 <hr class="hr-divide">
 <%= link_to 'Edit', edit_user_path(@user) %>

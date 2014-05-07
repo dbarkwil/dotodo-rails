@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :user_sessions
 
+  get 'users/logout_remote', :to => 'users#logout_remote', :as => :logout_remote
+
   resources :users
 
   resources :tasks
@@ -16,15 +18,19 @@ Rails.application.routes.draw do
       get ':token/tasks', :to => 'tasks#index'
       get ':token/tasks/show/:id', :to => 'tasks#show'
       get ':token/tasks/category/:catid', :to => 'tasks#category_filter'
+      get ':token/tasks/create/:catid/:label', :to => 'tasks#create'
 
       #Category Routes
       get ':token/categories', :to => 'categories#index'
+      get ':token/categories/create/:label', :to => 'categories#create'
 
       get 'users/login', :to => 'users#login'
       get 'users/validate_token/:token', :to=> 'users#validate_token'
    
     end
   end
+
+
 
   get 'login' => 'user_sessions#new'
   get 'logout' => 'user_sessions#destroy'

@@ -1,7 +1,6 @@
 module Api
 	module V1
-		class CategoriesController < ApplicationController
-			before_filter :restrict_access
+		class CategoriesController < TodoController
 			respond_to :json
 
 			def index
@@ -12,14 +11,23 @@ module Api
         
       		end
 
+      		def create
+      			@category = Category.new(:label => category_params[:label])
+      			@category.user = @user
+
+      			
+      			if @category.save
+      				respond_with @category.to_json(:only => :id)
+      			else
+      				null_response = {'error_code' => 0,'text' => 'Could not create category.'}
+		    		respond_with null_response.to_json
+       			end
+      			
+      		end
+
 		    private
 		    	def category_params
-		    		params.permit(:format, {ids: []}, :token)
-		    	end
-
-		    	def restrict_access
-		    		@user = User.find_by_single_access_token(category_params[:token])
-		    		head :unauthorized unless @user
+		    		params.permit(:format, {ids: []}, :label)
 		    	end
 
 		end

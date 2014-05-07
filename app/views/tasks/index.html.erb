@@ -13,10 +13,10 @@
 
       <tbody>
         <% @tasks.each do |task| %>
-          <tr class="<%= 'text-danger' if (task.due_date.to_time < DateTime.now) && (task.completion_date == nil) %>">
+          <tr class="<%= task.due_date ? ('text-danger' if (task.due_date.to_time < DateTime.now) && (task.completion_date == nil)) : '' %>">
             <td><%= task.label %></td>
             <td><%= task.category.label %></td>
-            <td><%= task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %></td>
+            <td><%= task.due_date ? task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") : 'None set' %></td>
             <td><%= link_to 'Show', task %></td>
             <td><%= link_to 'Edit', edit_task_path(task) %></td>
             <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

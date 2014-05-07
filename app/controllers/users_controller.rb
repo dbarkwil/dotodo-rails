@@ -17,6 +17,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def logout_remote
+    respond_to do |format|
+      if current_user && current_user.reset_single_access_token!
+        format.html { redirect_to current_user, notice: 'Single access token reset.' }
+      else
+        format.html { redirect_to root_url, error: 'Could not update user at this time.' }
+      end
+    end 
+  end
+
   # GET /users/1/edit
   def edit
   end

@@ -26,7 +26,7 @@
 				<% @category.tasks.each do |task| %>
 					<tr>
 						<td><%= task.label %></td>
-						<td><%= task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %></td>
+						<td><%= task.due_date ? task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") : 'None set'  %></td>
 					</tr>
 				<% end %>
 			</tbody>

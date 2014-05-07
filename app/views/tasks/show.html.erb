@@ -14,14 +14,12 @@
 		<%= @task.category.label %>
 	<p>
 	  <strong>Due date:</strong>
-	  <%= @task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
+	  <%= @task.due_date ? @task.due_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") : 'None set' %>
 	</p>
 	
 	<p>
 	  <strong>Completion Date:</strong>
-	  <% if @task.completion_date %>
-	  	<%= @task.completion_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") %>
-	  <% end %>
+	  <%= @task.completion_date ? @task.completion_date.to_time.strftime("%A, %B %-d, %Y at %l:%M %p") : 'Not completed' %>
 	</p>
 	
 

@@ -7,7 +7,7 @@ module Api
 
 			def login
 				@user = current_user
-				respond_with @user.to_json(:only => [:single_access_token, :username])
+				respond_with @user.to_json(:only => :single_access_token)
 			end
 
 			def validate_token

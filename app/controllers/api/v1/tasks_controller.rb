@@ -1,7 +1,6 @@
 module Api
 	module V1
-		class TasksController < ApplicationController
-			before_filter :restrict_access
+		class TasksController < TodoController
 			respond_to :json
 
 			def index
@@ -22,16 +21,38 @@ module Api
         
       		end
 
+      		def create
+      			@category = @user.categories.find_by(id: task_params[:catid])
+      			if @category
+      				@task = Task.new(:label => task_params[:label])
+      				@task.category = @category
+      				@task.due_date = task_params[:due_date] ? DateTime.strptime(task_params[:due_date].to_s, '%Y-%m-%d %I:%M:%S %p') : nil
+      				if @task.save
+      					respond_with @task.to_json(:only => :id)
+      				else
+      					null_response = {'error_code' => 0,'text' => 'Could not create task.'}
+		    			respond_with null_response.to_json
+      				end
+      			else
+      				null_response = {'error_code' => 1,'text' => 'Could not find category.'}
+		    		respond_with null_response.to_json
+      			end
+      		end
+
 			def complete
-        
-		        @task = Task.find(params[:id])
-		        @task.completion_date = Time.zone.now
-		        
-		        if @task.save
-		          respond_with @task
-		        else
-		          respond_with @task.errors, status: :unprocessable_entity
-		        end
+		        @task = @user.tasks.find_by(id: task_params[:id])
+
+		        if @task
+			        @task.completion_date = Time.zone.now
+			        if @task.save
+			          respond_with @task.to_json(:only => [:id, :completion_date])
+			        else
+			          respond_with @task.errors, status: :unprocessable_entity
+			        end
+			    else
+			    	null_response = {'error_code' => 2,'text' => 'Task ID is incorrect.'}
+		    		respond_with null_response.to_json
+			    end
 		    end
 
 		    def show
@@ -48,12 +69,7 @@ module Api
 
 		    private
 		    	def task_params
-		    		params.permit(:format, {ids: []}, :catid, :token)
-		    	end
-
-		    	def restrict_access
-		    		@user = User.find_by_single_access_token(task_params[:token])
-		    		head :unauthorized unless @user
+		    		params.permit(:format, {ids: []}, :catid, :label, :id, :due_date)
 		    	end
 
 		end
