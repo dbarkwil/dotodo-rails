@@ -53,3 +53,6 @@ gem 'authlogic'
 gem 'scrypt'
 gem 'bcrypt'
 
+# JQuery and Turbolinks INtegration
+gem 'jquery-turbolinks'
+
